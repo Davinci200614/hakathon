@@ -1,5 +1,10 @@
 # Gemini backend setup and verification
 
+Text extraction now defaults to Ollama. This document describes the existing Gemini
+STT and older debug history; use [OLLAMA.md](OLLAMA.md) for current startup, provider
+selection and acceptance tests. Gemini text selection/fallback now uses one attempt.
+
+
 ## Start
 
 ```bash
@@ -32,7 +37,8 @@ uvicorn app.main:app --reload --workers 1
 ```
 
 Keep the existing ngrok command, URL registration, verification token, app secret,
-access token and phone-number ID. No Meta webhook or sending code was changed.
+access token and phone-number ID. Verification/HMAC and the Meta send request are
+preserved; safe diagnostics now wrap parsing, processing and sending.
 Do not run multiple API workers for this MVP: per-farmer processing locks are
 in-process. A durable queue/ordering strategy is needed before scaling workers.
 
@@ -50,10 +56,74 @@ legacy drafts, rate limits, invalid/empty output and unavailable models.
 `test_sdk_smoke.py` additionally checks actual installed SDK types and async client
 wiring without contacting Google; it skips if the package is absent.
 
-Implementation-environment result: 22 offline tests passed; the installed-SDK
-smoke test was skipped. Installing google-genai was blocked by network DNS access.
-A live Gemini request and real WhatsApp audio test were not performed here.
-Run the suite again after installation; the SDK smoke test should then pass.
+Current verification: **30 tests passed**, including the installed google-genai
+1.75.0 SDK over mock HTTP transports and the full signed-text handler pipeline.
+These tests do not prove real WhatsApp delivery. A separate synthetic live Gemini
+probe encountered a transport ConnectError in this execution environment.
+No real WhatsApp delivery or voice acceptance test was completed here.
+
+## Confirmed schema bug and fix
+
+Effective GEMINI_API_KEY and GEMINI_MODEL matched `backend/.env` at inspection.
+The text handler calls `extract`, which uses `config.GEMINI_MODEL`; there is no
+hardcoded replacement model. Startup now logs matching booleans and the effective
+model, never the key. Restart is required after file changes because configuration
+is loaded at process import. Existing exported environment settings take precedence.
+
+The active SQLite database contained seven `gemini_invalid_json` failures.
+Reproducing SDK conversion locally with version 1.75.0 raised ValidationError at:
+`properties.area_hectares.exclusiveMinimum` (`extra_forbidden`). Pydantic generates
+this keyword for `Field(gt=0)`. Passing the Pydantic class through `response_schema`
+caused the SDK to convert it through its restricted Schema type **before HTTP**.
+The broad ValidationError handler mislabeled that failure as invalid model JSON,
+and the service sent a generic fallback. A second send failure was silently swallowed.
+The earlier SDK smoke test mocked `generate_content` itself and bypassed this
+serialization, which is why it did not detect the problem.
+
+The fix uses `response_json_schema=Model.model_json_schema()` and still validates
+the returned JSON with Pydantic. SDK request-configuration errors now have the
+separate `gemini_schema_configuration_error` code. The new SDK transport tests run
+real serialization and inspect the outbound JSON without contacting a provider.
+
+## Restart and perform one real text test
+
+1. Stop the currently running FastAPI process with Ctrl-C in its terminal. Leave
+   the existing ngrok session running and retain all current `.env` values.
+2. Start from the backend directory using its existing virtual environment:
+
+```bash
+cd /home/davinci/hakathon/nouba-agriflow/backend
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload --log-level info
+```
+
+Use the same port your existing ngrok tunnel forwards to if it differs from 8000.
+Do not start a second backend alongside the old process. No token rotation,
+Meta setting change, Vercel change or new ngrok configuration is required.
+
+3. At startup inspect `configuration.gemini`: `key_configured`, `key_matches_env`
+   and `model_matches_env` should be true; the effective model should match your
+   successful standalone test. Do not paste your key or private `.env` into logs.
+4. Send a **new real WhatsApp text** from an allowed test recipient:
+
+   “بغيت تراكتور للحرث، عندي جوج هكتارات فدكالة نهار 10 فبراير 2027”
+
+5. Look for `webhook.parsed`, then one message trace with `conversation.load`,
+   `gemini.configuration`, `gemini.inference`, `gemini.response_validation`,
+   `conversation.persist`, `reply.persist`, `meta.send_http` and `reply.delivery`.
+   Expected result is a summary asking for confirmation (or one question if a
+   field could not be extracted). Verify the reply **on the actual phone**.
+   `meta_http_status=200` only proves Meta accepted the send, not delivery.
+6. Optionally reply `نعم` to complete the confirmation acceptance test: one
+   `pending_review` request should be saved, with the no-confirmed-booking reply.
+
+Structured log lines include random trace_id, stage, duration_ms and safe error
+metadata. They omit phone numbers, message bodies, keys, URLs and raw provider
+exception text. A 503 produces bounded retries; a 429 produces a quota-specific
+fallback without immediate retries. A `meta.send` error reports the HTTP status
+and numeric Meta error code, including a possible expired temporary token; no
+credentials are changed automatically. `reply.fallback_failed` records previously
+silent failures to deliver the fallback itself.
 
 ## Real WhatsApp voice acceptance test
 
@@ -99,7 +169,9 @@ authentication. Do not expose `/api/*` publicly as part of this test.
   summary delivery inserts a `pending_review` request. Old `draft` rows remain
   intact and can be resumed/reconfirmed; confirmed old rows are left intact.
 - Errors use safe codes in `messages.error`, never raw provider exception text.
-  `gemini_rate_limited` means 429; transient 429/5xx calls get up to three attempts.
+  `gemini_rate_limited` means 429 and is not immediately retried. Transient 5xx
+  calls get at most three attempts, 15 seconds per HTTP request, 1/2-second
+  backoff and a 50-second overall inference budget.
   `gemini_model_or_input_unavailable` means a 400/404 response: check model access,
   model capabilities and input. Authentication failures, missing config, network
   errors, invalid JSON, empty output and unclear audio have separate codes.

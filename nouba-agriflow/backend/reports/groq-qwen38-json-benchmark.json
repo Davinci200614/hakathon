@@ -1,0 +1,2460 @@
+{
+  "model": "qwen/qwen3.8-27b",
+  "reasoning_effort": "none",
+  "format": "json",
+  "created_at": "2026-11-04T22:02:04.300257+00:00",
+  "scope": "Synthetic direct NLU tests; production prompt, strict transport schema, local full validation. No DB or WhatsApp calls.",
+  "cases": [
+    {
+      "id": "direct_electrician",
+      "message": "سلام بغيت نلقى شي تريسيان ف سلا جديدة",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "none",
+        "pending_field": null,
+        "draft": {},
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "search_workers"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "work": "electrician",
+        "location": "sale_al_jadida"
+      },
+      "latency_seconds": 0.688,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "984",
+        "x-ratelimit-remaining-tokens": "6193",
+        "x-ratelimit-reset-requests": "23m2.4s",
+        "x-ratelimit-reset-tokens": "13.552s"
+      },
+      "usage": {
+        "queue_time": 0.016570909,
+        "prompt_tokens": 1703,
+        "prompt_time": 0.125123966,
+        "completion_tokens": 126,
+        "completion_time": 0.260864007,
+        "total_tokens": 1829,
+        "total_time": 0.385987973
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"search_workers\",\n  \"action\": \"new\",\n  \"facts\": {\n    \"machine_type\": null,\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": \"سلا الجديدة\",\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": \"تريسيان\",\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "search_workers",
+        "action": "new",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": "سلا الجديدة",
+          "preferred_date": null,
+          "name": null,
+          "work": "تريسيان",
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "indirect_electrician",
+      "message": "الضو فالدار كيطفي بوحدو ومحتاج شي حد يفهم فهاد الشي يجي يشوفو، أنا فسلا الجديدة",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "none",
+        "pending_field": null,
+        "draft": {},
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "search_workers"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "work": "electrician",
+        "location": "sale_al_jadida"
+      },
+      "latency_seconds": 0.671,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "983",
+        "x-ratelimit-remaining-tokens": "6177",
+        "x-ratelimit-reset-requests": "24m28.8s",
+        "x-ratelimit-reset-tokens": "13.672s"
+      },
+      "usage": {
+        "queue_time": 0.017632798,
+        "prompt_tokens": 1720,
+        "prompt_time": 0.119139632,
+        "completion_tokens": 136,
+        "completion_time": 0.288426715,
+        "total_tokens": 1856,
+        "total_time": 0.407566347
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"search_workers\",\n  \"action\": \"new\",\n  \"facts\": {\n    \"machine_type\": null,\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": \"سلا الجديدة\",\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": \"كهربائي\",\n    \"details\": \"الضو فالدار كيطفي بوحدو\",\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "search_workers",
+        "action": "new",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": "سلا الجديدة",
+          "preferred_date": null,
+          "name": null,
+          "work": "كهربائي",
+          "details": "الضو فالدار كيطفي بوحدو",
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "arabizi_hiring",
+      "message": "ah bghit wahed dri 25dm 3ndi",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "machine",
+        "pending_field": "confirm",
+        "draft": {
+          "machine_type": "tractor",
+          "operation": "plowing",
+          "area_hectares": 2,
+          "location": "دكالة",
+          "preferred_date": "2026-11-05"
+        },
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "search_workers"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "not_action": "confirm",
+        "empty": [
+          "machine_type",
+          "area_hectares",
+          "preferred_date"
+        ]
+      },
+      "latency_seconds": 0.667,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "982",
+        "x-ratelimit-remaining-tokens": "6134",
+        "x-ratelimit-reset-requests": "25m55.199s",
+        "x-ratelimit-reset-tokens": "13.995s"
+      },
+      "usage": {
+        "queue_time": 0.016755705,
+        "prompt_tokens": 1740,
+        "prompt_time": 0.140190377,
+        "completion_tokens": 137,
+        "completion_time": 0.269927123,
+        "total_tokens": 1877,
+        "total_time": 0.4101175
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"machine\",\n  \"action\": \"correct\",\n  \"facts\": {\n    \"machine_type\": \"tractor\",\n    \"operation\": \"plowing\",\n    \"area_hectares\": 2.5,\n    \"location\": \"دكالة\",\n    \"preferred_date\": \"2026-11-05\",\n    \"name\": null,\n    \"work\": null,\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "machine",
+        "action": "correct",
+        "facts": {
+          "machine_type": "tractor",
+          "operation": "plowing",
+          "area_hectares": 2.5,
+          "location": "دكالة",
+          "preferred_date": "2026-11-05",
+          "name": null,
+          "work": null,
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [
+        "task",
+        "invented_or_copied_machine_type",
+        "invented_or_copied_area_hectares",
+        "invented_or_copied_preferred_date"
+      ],
+      "task_correct": false,
+      "passed": false
+    },
+    {
+      "id": "job_not_hiring",
+      "message": "أنا باغي نلقى خدمة كتريسيان فسلا جديدة",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "none",
+        "pending_field": null,
+        "draft": {},
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "search_jobs"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "work": "electrician",
+        "location": "sale_al_jadida"
+      },
+      "latency_seconds": 0.656,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "981",
+        "x-ratelimit-remaining-tokens": "6195",
+        "x-ratelimit-reset-requests": "27m21.6s",
+        "x-ratelimit-reset-tokens": "13.537s"
+      },
+      "usage": {
+        "queue_time": 0.048434662,
+        "prompt_tokens": 1704,
+        "prompt_time": 0.137025185,
+        "completion_tokens": 125,
+        "completion_time": 0.247431352,
+        "total_tokens": 1829,
+        "total_time": 0.384456537
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"search_jobs\",\n  \"action\": \"new\",\n  \"facts\": {\n    \"machine_type\": null,\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": \"سلا الجديدة\",\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": \"كهربائي\",\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "search_jobs",
+        "action": "new",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": "سلا الجديدة",
+          "preferred_date": null,
+          "name": null,
+          "work": "كهربائي",
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "harvester_description",
+      "message": "بغيت ماكينة ديال الحصاد",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "none",
+        "pending_field": null,
+        "draft": {},
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "machine"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "machine_type": "harvester"
+      },
+      "latency_seconds": 0.633,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "980",
+        "x-ratelimit-remaining-tokens": "6176",
+        "x-ratelimit-reset-requests": "28m48s",
+        "x-ratelimit-reset-tokens": "13.68s"
+      },
+      "usage": {
+        "queue_time": 0.087616699,
+        "prompt_tokens": 1699,
+        "prompt_time": 0.120984719,
+        "completion_tokens": 123,
+        "completion_time": 0.23408058,
+        "total_tokens": 1822,
+        "total_time": 0.355065299
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"machine\",\n  \"action\": \"new\",\n  \"facts\": {\n    \"machine_type\": \"harvester\",\n    \"operation\": \"harvesting\",\n    \"area_hectares\": null,\n    \"location\": null,\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": null,\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "machine",
+        "action": "new",
+        "facts": {
+          "machine_type": "harvester",
+          "operation": "harvesting",
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": null,
+          "name": null,
+          "work": null,
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "unseen_baler_description",
+      "message": "باغي آلة كتجمع التبن وتضغطو وتربطو فبالات باش ننقلو",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "none",
+        "pending_field": null,
+        "draft": {},
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "machine"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "machine_type": "baler"
+      },
+      "latency_seconds": 0.775,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "979",
+        "x-ratelimit-remaining-tokens": "6164",
+        "x-ratelimit-reset-requests": "30m14.4s",
+        "x-ratelimit-reset-tokens": "13.77s"
+      },
+      "usage": {
+        "queue_time": 0.027259816,
+        "prompt_tokens": 1711,
+        "prompt_time": 0.130885796,
+        "completion_tokens": 136,
+        "completion_time": 0.292941888,
+        "total_tokens": 1847,
+        "total_time": 0.423827684
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"machine\",\n  \"action\": \"new\",\n  \"facts\": {\n    \"machine_type\": \"baler\",\n    \"operation\": \"جمع التبن وضغطه وربطه في بالات\",\n    \"area_hectares\": null,\n    \"location\": null,\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": null,\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "machine",
+        "action": "new",
+        "facts": {
+          "machine_type": "baler",
+          "operation": "جمع التبن وضغطه وربطه في بالات",
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": null,
+          "name": null,
+          "work": null,
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "unknown_machine",
+      "message": "بغيت زغفلون 9000، ما عارفش سميتو الصحيحة",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "none",
+        "pending_field": null,
+        "draft": {},
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "none",
+        "machine"
+      ],
+      "expected_actions": [
+        "unknown",
+        "clarify",
+        "help"
+      ],
+      "rules": {
+        "clarification": true,
+        "not_known_machine": true
+      },
+      "latency_seconds": 0.745,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "978",
+        "x-ratelimit-remaining-tokens": "6153",
+        "x-ratelimit-reset-requests": "31m40.8s",
+        "x-ratelimit-reset-tokens": "13.852s"
+      },
+      "usage": {
+        "queue_time": 0.048076922,
+        "prompt_tokens": 1711,
+        "prompt_time": 0.145787993,
+        "completion_tokens": 141,
+        "completion_time": 0.300109186,
+        "total_tokens": 1852,
+        "total_time": 0.445897179
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"search_machines\",\n  \"action\": \"new\",\n  \"facts\": {\n    \"machine_type\": \"زغفلون 9000\",\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": null,\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": null,\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": \"واش تقصد تراكتور (Tractor)؟\"\n}",
+      "output": {
+        "task": "search_machines",
+        "action": "new",
+        "facts": {
+          "machine_type": "زغفلون 9000",
+          "operation": null,
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": null,
+          "name": null,
+          "work": null,
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": "واش تقصد تراكتور (Tractor)؟"
+      },
+      "schema_valid": true,
+      "failures": [
+        "task",
+        "action"
+      ],
+      "task_correct": false,
+      "passed": false
+    },
+    {
+      "id": "location_correction",
+      "message": "أنا ف بني مسكين مشي دكالة",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "machine",
+        "pending_field": "correction",
+        "draft": {
+          "machine_type": "tractor",
+          "operation": "plowing",
+          "area_hectares": 2,
+          "location": "دكالة",
+          "preferred_date": "2026-11-05"
+        },
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "machine"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "contains": {
+          "location": "بني مسكين"
+        },
+        "empty": [
+          "machine_type",
+          "operation",
+          "area_hectares",
+          "preferred_date"
+        ]
+      },
+      "latency_seconds": 0.515,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "977",
+        "x-ratelimit-remaining-tokens": "6126",
+        "x-ratelimit-reset-requests": "33m7.2s",
+        "x-ratelimit-reset-tokens": "14.055s"
+      },
+      "usage": {
+        "queue_time": 0.017739829,
+        "prompt_tokens": 1737,
+        "prompt_time": 0.125542242,
+        "completion_tokens": 54,
+        "completion_time": 0.102842723,
+        "total_tokens": 1791,
+        "total_time": 0.228384965
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"machine\",\n  \"action\": \"correct\",\n  \"facts\": {\n    \"location\": \"بني مسكين\"\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "machine",
+        "action": "correct",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": "بني مسكين",
+          "preferred_date": null,
+          "name": null,
+          "work": null,
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "relative_date",
+      "message": "لاربع ديال سيمانة جاية مع 12",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "machine",
+        "pending_field": "preferred_date",
+        "draft": {
+          "machine_type": "tractor",
+          "operation": "plowing",
+          "area_hectares": 2,
+          "location": "دكالة"
+        },
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "machine"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "date": "2026-11-11"
+      },
+      "latency_seconds": 0.508,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "976",
+        "x-ratelimit-remaining-tokens": "6133",
+        "x-ratelimit-reset-requests": "34m33.6s",
+        "x-ratelimit-reset-tokens": "14.002s"
+      },
+      "usage": {
+        "queue_time": 0.016875458,
+        "prompt_tokens": 1726,
+        "prompt_time": 0.122509157,
+        "completion_tokens": 61,
+        "completion_time": 0.132753761,
+        "total_tokens": 1787,
+        "total_time": 0.255262918
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"machine\",\n  \"action\": \"continue\",\n  \"facts\": {\n    \"preferred_date\": \"2026-11-12\"\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "machine",
+        "action": "continue",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": "2026-11-12",
+          "name": null,
+          "work": null,
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [
+        "preferred_date"
+      ],
+      "task_correct": true,
+      "passed": false
+    },
+    {
+      "id": "mixed_yes_topic_switch",
+      "message": "أه ،و بغيت واحد إخدم عندي",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "machine",
+        "pending_field": "confirm",
+        "draft": {
+          "machine_type": "tractor",
+          "operation": "plowing",
+          "area_hectares": 2,
+          "location": "دكالة",
+          "preferred_date": "2026-11-05"
+        },
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "search_workers"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "not_action": "confirm",
+        "empty": [
+          "machine_type",
+          "area_hectares"
+        ]
+      },
+      "latency_seconds": 0.67,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "975",
+        "x-ratelimit-remaining-tokens": "6128",
+        "x-ratelimit-reset-requests": "36m0s",
+        "x-ratelimit-reset-tokens": "14.04s"
+      },
+      "usage": {
+        "queue_time": 0.017687019,
+        "prompt_tokens": 1736,
+        "prompt_time": 0.127720218,
+        "completion_tokens": 119,
+        "completion_time": 0.226622913,
+        "total_tokens": 1855,
+        "total_time": 0.354343131
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"search_workers\",\n  \"action\": \"switch\",\n  \"facts\": {\n    \"machine_type\": null,\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": null,\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": null,\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "search_workers",
+        "action": "switch",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": null,
+          "name": null,
+          "work": null,
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "profile_skill_answer",
+      "message": "حصاد",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "post_worker",
+        "pending_field": "work",
+        "draft": {
+          "kind": "worker",
+          "name": "أيوب",
+          "location": "مكناس"
+        },
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "post_worker"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "work": "harvesting"
+      },
+      "latency_seconds": 0.696,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "974",
+        "x-ratelimit-remaining-tokens": "6159",
+        "x-ratelimit-reset-requests": "37m26.4s",
+        "x-ratelimit-reset-tokens": "13.807s"
+      },
+      "usage": {
+        "queue_time": 0.058300901,
+        "prompt_tokens": 1705,
+        "prompt_time": 0.142658998,
+        "completion_tokens": 121,
+        "completion_time": 0.279347248,
+        "total_tokens": 1826,
+        "total_time": 0.422006246
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"post_worker\",\n  \"action\": \"continue\",\n  \"facts\": {\n    \"machine_type\": null,\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": null,\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": \"الحصاد\",\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "post_worker",
+        "action": "continue",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": null,
+          "name": null,
+          "work": "الحصاد",
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "profile_salary_answer",
+      "message": "من سيمانة جاية نبدا نخدم، كنقلب على 4000 dh فشهر، وأنا اللي بغيت نخدم",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "post_worker",
+        "pending_field": "details",
+        "draft": {
+          "kind": "worker",
+          "name": "أيوب",
+          "location": "مكناس",
+          "work": "electrician"
+        },
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "post_worker"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "contains": {
+          "details": "4000"
+        },
+        "empty": [
+          "name",
+          "location",
+          "contact"
+        ]
+      },
+      "latency_seconds": 0.628,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "973",
+        "x-ratelimit-remaining-tokens": "6122",
+        "x-ratelimit-reset-requests": "38m52.8s",
+        "x-ratelimit-reset-tokens": "14.085s"
+      },
+      "usage": {
+        "queue_time": 0.017043202,
+        "prompt_tokens": 1737,
+        "prompt_time": 0.123187069,
+        "completion_tokens": 135,
+        "completion_time": 0.256801202,
+        "total_tokens": 1872,
+        "total_time": 0.379988271
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"post_worker\",\n  \"action\": \"continue\",\n  \"facts\": {\n    \"machine_type\": null,\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": null,\n    \"preferred_date\": \"2026-11-11\",\n    \"name\": null,\n    \"work\": null,\n    \"details\": \"4000 dh/month\",\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "post_worker",
+        "action": "continue",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": "2026-11-11",
+          "name": null,
+          "work": null,
+          "details": "4000 dh/month",
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "rich_name_answer",
+      "message": "سميتي أيوب بغيت نلقى خدمة فشي كاريان",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "post_worker",
+        "pending_field": "name",
+        "draft": {
+          "kind": "worker"
+        },
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "post_worker"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "contains": {
+          "name": "أيوب"
+        },
+        "work": "quarry",
+        "empty": [
+          "location",
+          "contact"
+        ]
+      },
+      "latency_seconds": 0.605,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "972",
+        "x-ratelimit-remaining-tokens": "6151",
+        "x-ratelimit-reset-requests": "40m19.2s",
+        "x-ratelimit-reset-tokens": "13.867s"
+      },
+      "usage": {
+        "queue_time": 0.017477611,
+        "prompt_tokens": 1708,
+        "prompt_time": 0.125079739,
+        "completion_tokens": 124,
+        "completion_time": 0.241724273,
+        "total_tokens": 1832,
+        "total_time": 0.366804012
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"post_worker\",\n  \"action\": \"continue\",\n  \"facts\": {\n    \"name\": \"أيوب\",\n    \"work\": \"الكاريان\",\n    \"machine_type\": null,\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": null,\n    \"preferred_date\": null,\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "post_worker",
+        "action": "continue",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": null,
+          "name": "أيوب",
+          "work": "الكاريان",
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "contact_denial",
+      "message": "باقي معطيتكش وسيلة الاتصال",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "post_worker",
+        "pending_field": "confirm",
+        "draft": {
+          "kind": "worker",
+          "name": "أيوب",
+          "location": "إنزكان",
+          "work": "driver",
+          "details": "متوفر صباحا",
+          "contact": "old@example.invalid"
+        },
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "post_worker"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "clear": "contact",
+        "empty": [
+          "contact"
+        ]
+      },
+      "latency_seconds": 0.67,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "971",
+        "x-ratelimit-remaining-tokens": "6133",
+        "x-ratelimit-reset-requests": "41m45.6s",
+        "x-ratelimit-reset-tokens": "14.002s"
+      },
+      "usage": {
+        "queue_time": 0.016598189,
+        "prompt_tokens": 1730,
+        "prompt_time": 0.151724011,
+        "completion_tokens": 127,
+        "completion_time": 0.248490001,
+        "total_tokens": 1857,
+        "total_time": 0.400214012
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"post_worker\",\n  \"action\": \"correct\",\n  \"facts\": {\n    \"machine_type\": null,\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": null,\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": null,\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [\n    \"contact\"\n  ],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "post_worker",
+        "action": "correct",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": null,
+          "name": null,
+          "work": null,
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [
+          "contact"
+        ],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    },
+    {
+      "id": "contact_channel_only",
+      "message": "واتساب ولا فيسبوك، باقي معطيتكش الكونت ولا النمرة",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "post_worker",
+        "pending_field": "contact",
+        "draft": {
+          "kind": "worker",
+          "name": "أيوب",
+          "location": "إنزكان",
+          "work": "driver",
+          "details": "متوفر صباحا"
+        },
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "post_worker"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "empty": [
+          "contact"
+        ]
+      },
+      "latency_seconds": 0.595,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "970",
+        "x-ratelimit-remaining-tokens": "6125",
+        "x-ratelimit-reset-requests": "43m12s",
+        "x-ratelimit-reset-tokens": "14.062s"
+      },
+      "usage": {
+        "queue_time": 0.017167319,
+        "prompt_tokens": 1734,
+        "prompt_time": 0.119506867,
+        "completion_tokens": 119,
+        "completion_time": 0.238515183,
+        "total_tokens": 1853,
+        "total_time": 0.35802205
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\n  \"task\": \"post_worker\",\n  \"action\": \"continue\",\n  \"facts\": {\n    \"machine_type\": null,\n    \"operation\": null,\n    \"area_hectares\": null,\n    \"location\": null,\n    \"preferred_date\": null,\n    \"name\": null,\n    \"work\": null,\n    \"details\": null,\n    \"contact\": null,\n    \"browse_all\": null\n  },\n  \"clear_fields\": [],\n  \"clarification\": null\n}",
+      "output": {
+        "task": "post_worker",
+        "action": "continue",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": null,
+          "preferred_date": null,
+          "name": null,
+          "work": null,
+          "details": null,
+          "contact": null,
+          "browse_all": null
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "task_correct": true,
+      "passed": true
+    }
+  ],
+  "selected_case_ids": [
+    "direct_electrician",
+    "indirect_electrician",
+    "arabizi_hiring",
+    "job_not_hiring",
+    "harvester_description",
+    "unseen_baler_description",
+    "unknown_machine",
+    "location_correction",
+    "relative_date",
+    "mixed_yes_topic_switch",
+    "profile_skill_answer",
+    "profile_salary_answer",
+    "rich_name_answer",
+    "contact_denial",
+    "contact_channel_only",
+    "multi_field_correction",
+    "publish_reference_after_search",
+    "reset_with_typo",
+    "arabizi_publication_confirmation",
+    "question_about_salary"
+  ]
+}

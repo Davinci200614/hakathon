@@ -1,5 +1,6 @@
 """Offline contract tests; no real keys, database records or network calls."""
 import asyncio
+from tests.legacy_support import setUpModule, tearDownModule
 import importlib.util
 import json
 import httpx
@@ -83,10 +84,10 @@ class FlowTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(self.send.call_args.args[1],service.QUESTIONS['operation'])
         await service.handle_message(self.msg('three','الحرث'))
         args=self.extract.call_args.args
-        self.assertEqual(args[1]['machine_type'],'تراكتور')
+        self.assertEqual(args[1]['machine_type'],'tractor')
         self.assertEqual(args[2][-1]['text'],service.QUESTIONS['operation'])
         # Read back from a new SQLite connection, not an in-memory Python chat.
-        self.assertEqual(service.conversation('test-farmer')[0]['machine_type'],'تراكتور')
+        self.assertEqual(service.conversation('test-farmer')[0]['machine_type'],'tractor')
 
     async def test_correction_requires_another_confirmation(self):
         await service.handle_message(self.msg('one'))
@@ -116,7 +117,8 @@ class FlowTests(unittest.IsolatedAsyncioTestCase):
         self.extract.assert_not_awaited()
         self.assertEqual(self.count(),0)
         with db.connect() as con:
-            self.assertEqual(con.execute('SELECT status FROM messages').fetchone()[0],'needs_text')
+            self.assertEqual(con.execute('SELECT status FROM messages').fetchone()[0],'ai_error_replied')
+            self.assertEqual(con.execute('SELECT error FROM messages').fetchone()[0],'transcription_failed')
 
     async def test_rate_limit_is_recoverable(self):
         self.extract.side_effect=ai.AIError('gemini_rate_limited')
@@ -125,7 +127,10 @@ class FlowTests(unittest.IsolatedAsyncioTestCase):
         with db.connect() as con:
             self.assertEqual(con.execute('SELECT error FROM messages').fetchone()[0],'gemini_rate_limited')
         self.extract.side_effect=None
+        # Successful fallback is deduplicated; the farmer retries with a new message.
         await service.handle_message(self.msg('one'))
+        self.assertEqual(self.count(),0)
+        await service.handle_message(self.msg('two'))
         self.assertTrue(service.conversation('test-farmer')[2])
 
     async def test_confirmation_reply_retry_does_not_duplicate_request(self):
@@ -172,6 +177,12 @@ class FlowTests(unittest.IsolatedAsyncioTestCase):
 
 class GeminiContractTests(unittest.IsolatedAsyncioTestCase):
     """Mock official SDK boundary, so failure cases run without live credentials."""
+    async def gemini_extract(self, text, previous=None, history=None):
+        result = await ai._generate(config.GEMINI_MODEL,
+            json.dumps({'text':text,'previous':previous,'history':history or []},ensure_ascii=False),
+            ai.AgriculturalRequest,'Extract only explicit agricultural facts.')
+        return result.model_dump(mode='json')
+
     def sdk(self, response=None, error=None):
         class APIError(Exception):
             def __init__(self,code): self.code=code
@@ -202,27 +213,27 @@ class GeminiContractTests(unittest.IsolatedAsyncioTestCase):
     async def test_structured_json_extraction(self):
         stub,generate=self.sdk(json.dumps(FULL))
         with stub,patch.object(config,'GEMINI_API_KEY','test-only'),patch.object(config,'GEMINI_MODEL','test-model'):
-            result=await ai.extract('جوج هكتارات',{'machine_type':'تراكتور'},[{'role':'assistant','text':'شحال من هكتار؟'}])
+            result=await self.gemini_extract('جوج هكتارات',{'machine_type':'تراكتور'},[{'role':'assistant','text':'شحال من هكتار؟'}])
         self.assertEqual(result['area_hectares'],2)
         sent=json.loads(generate.call_args.kwargs['contents'])
         self.assertEqual(sent['previous']['machine_type'],'تراكتور')
         self.assertEqual(len(sent['history']),1)
-        self.assertIs(generate.call_args.kwargs['config']['response_schema'],ai.AgriculturalRequest)
+        self.assertEqual(generate.call_args.kwargs['config']['response_json_schema'],ai.AgriculturalRequest.model_json_schema())
 
     async def test_api_errors_are_classified_without_payloads(self):
         for status,code in [(429,'gemini_rate_limited'),(404,'gemini_model_or_input_unavailable'),(403,'gemini_auth_error'),(503,'gemini_unavailable')]:
             stub,generate=self.sdk(error=status)
             with self.subTest(status=status),stub,patch.object(config,'GEMINI_API_KEY','test-only'),patch.object(config,'GEMINI_MODEL','test-model'),patch.object(ai.asyncio,'sleep',AsyncMock()):
                 with self.assertRaises(ai.AIError) as caught:
-                    await ai.extract('text')
+                    await self.gemini_extract('text')
                 self.assertEqual(str(caught.exception),code)
-                self.assertEqual(generate.await_count,3 if status in (429,503) else 1)
+                self.assertEqual(generate.await_count,3 if status == 503 else 1)
 
     async def test_invalid_empty_or_blocked_responses(self):
         for response in ['not JSON','{"intent":"request_machine","area_hectares":-3}',None]:
             stub,_=self.sdk(response)
             with stub,patch.object(config,'GEMINI_API_KEY','test-only'),patch.object(config,'GEMINI_MODEL','test-model'):
-                with self.assertRaises(ai.AIError): await ai.extract('text')
+                with self.assertRaises(ai.AIError): await self.gemini_extract('text')
 
     async def test_silence_and_invalid_audio(self):
         stub,_=self.sdk('{"text":null,"intelligible":false}')
@@ -237,7 +248,7 @@ class GeminiContractTests(unittest.IsolatedAsyncioTestCase):
         generate.side_effect=httpx.ConnectError('sensitive request URL')
         with stub,patch.object(config,'GEMINI_API_KEY','test-only'),patch.object(config,'GEMINI_MODEL','test-model'):
             with self.assertRaisesRegex(ai.AIError,'^gemini_network_error$'):
-                await ai.extract('text')
+                await self.gemini_extract('text')
 
     async def test_stt_defaults_to_main_model(self):
         stub,generate=self.sdk('{"text":"سلام","intelligible":true}')
@@ -245,9 +256,29 @@ class GeminiContractTests(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(await ai.transcribe(b'OggSvoice'),'سلام')
         self.assertEqual(generate.call_args.kwargs['model'],'main-model')
 
+    async def test_overall_deadline_bounds_a_stalled_call(self):
+        stub,generate=self.sdk()
+        async def stall(**kwargs):
+            await asyncio.Event().wait()
+        generate.side_effect=stall
+        real_timeout=asyncio.timeout
+        with stub,patch.object(config,'GEMINI_API_KEY','test-only'),patch.object(config,'GEMINI_MODEL','test-model'),patch.object(ai.asyncio,'timeout',side_effect=lambda _:real_timeout(0.01)):
+            with self.assertRaisesRegex(ai.AIError,'^gemini_network_error$'):
+                await self.gemini_extract('text')
+
+    async def test_sdk_validation_is_not_mislabeled_model_json(self):
+        stub,generate=self.sdk()
+        try:
+            ai.AgriculturalRequest(intent='invalid')
+        except ValidationError as exc:
+            generate.side_effect=exc
+        with stub,patch.object(config,'GEMINI_API_KEY','test-only'),patch.object(config,'GEMINI_MODEL','test-model'):
+            with self.assertRaisesRegex(ai.AIError,'^gemini_schema_configuration_error$'):
+                await self.gemini_extract('text')
+
     async def test_missing_configuration(self):
         with patch.object(config,'GEMINI_API_KEY',''):
-            with self.assertRaisesRegex(ai.AIError,'gemini_not_configured'): await ai.extract('text')
+            with self.assertRaisesRegex(ai.AIError,'gemini_not_configured'): await self.gemini_extract('text')
 
 
 if __name__=='__main__':

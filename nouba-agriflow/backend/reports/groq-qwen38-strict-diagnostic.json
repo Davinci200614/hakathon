@@ -1,0 +1,176 @@
+{
+  "model": "qwen/qwen3.8-27b",
+  "reasoning_effort": "none",
+  "created_at": "2026-11-04T21:58:39.312756+00:00",
+  "scope": "Synthetic direct NLU tests; production prompt, strict transport schema, local full validation. No DB or WhatsApp calls.",
+  "cases": [
+    {
+      "id": "direct_electrician",
+      "message": "سلام بغيت نلقى شي تريسيان ف سلا جديدة",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "none",
+        "pending_field": null,
+        "draft": {},
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "search_workers"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "work": "electrician",
+        "location": "sale_al_jadida"
+      },
+      "latency_seconds": 0.672,
+      "http_status": 200,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "998",
+        "x-ratelimit-remaining-tokens": "6652",
+        "x-ratelimit-reset-requests": "2m52.8s",
+        "x-ratelimit-reset-tokens": "10.11s"
+      },
+      "usage": {
+        "queue_time": 0.059415064,
+        "prompt_tokens": 1209,
+        "prompt_time": 0.097118073,
+        "completion_tokens": 92,
+        "completion_time": 0.204596135,
+        "total_tokens": 1301,
+        "total_time": 0.301714208
+      },
+      "finish_reason": "stop",
+      "raw_output": "{\"action\": \"new\", \"clarification\": null, \"clear_fields\": [], \"facts\": {\"area_hectares\": null, \"browse_all\": false, \"contact\": null, \"details\": null, \"location\": \"sale_al_jadida\", \"machine_type\": null, \"name\": null, \"operation\": null, \"preferred_date\": null, \"work\": \"electrician\"}, \"task\": \"search_workers\"}",
+      "output": {
+        "task": "search_workers",
+        "action": "new",
+        "facts": {
+          "machine_type": null,
+          "operation": null,
+          "area_hectares": null,
+          "location": "sale_al_jadida",
+          "preferred_date": null,
+          "name": null,
+          "work": "electrician",
+          "details": null,
+          "contact": null,
+          "browse_all": false
+        },
+        "clear_fields": [],
+        "clarification": null
+      },
+      "schema_valid": true,
+      "failures": [],
+      "passed": true
+    }
+  ],
+  "summary": {
+    "planned_cases": 1,
+    "attempted_cases": 1,
+    "completed_cases": 1,
+    "schema_valid_cases": 1,
+    "passed_cases": 1,
+    "median_seconds": 0.672,
+    "max_seconds": 0.672,
+    "within_6_seconds": 1,
+    "prompt_tokens": 1209,
+    "completion_tokens": 92,
+    "wall_seconds_including_quota_pacing": 1.02
+  }
+}

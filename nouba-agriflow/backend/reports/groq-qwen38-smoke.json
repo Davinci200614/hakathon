@@ -1,0 +1,150 @@
+{
+  "model": "qwen/qwen3.8-27b",
+  "reasoning_effort": "none",
+  "created_at": "2026-11-04T21:58:11.201921+00:00",
+  "scope": "Synthetic direct NLU tests; production prompt, strict transport schema, local full validation. No DB or WhatsApp calls.",
+  "cases": [
+    {
+      "id": "direct_electrician",
+      "message": "سلام بغيت نلقى شي تريسيان ف سلا جديدة",
+      "context": {
+        "today": "2026-11-04",
+        "timezone": "Africa/Casablanca",
+        "active_task": "none",
+        "pending_field": null,
+        "draft": {},
+        "recent_turns": [],
+        "last_search": null,
+        "catalog_options": [
+          {
+            "kind": "machine",
+            "code": "tractor",
+            "label": "تراكتور"
+          },
+          {
+            "kind": "machine",
+            "code": "harvester",
+            "label": "حصادة"
+          },
+          {
+            "kind": "machine",
+            "code": "baler",
+            "label": "مكبس التبن"
+          },
+          {
+            "kind": "machine",
+            "code": "sprayer",
+            "label": "رشاشة"
+          },
+          {
+            "kind": "machine",
+            "code": "irrigation_pump",
+            "label": "مضخة الماء"
+          },
+          {
+            "kind": "skill",
+            "code": "electrician",
+            "label": "كهربائي"
+          },
+          {
+            "kind": "skill",
+            "code": "harvesting",
+            "label": "الحصاد"
+          },
+          {
+            "kind": "skill",
+            "code": "plumber",
+            "label": "سباك"
+          },
+          {
+            "kind": "skill",
+            "code": "carpenter",
+            "label": "نجار"
+          },
+          {
+            "kind": "skill",
+            "code": "driver",
+            "label": "سائق"
+          },
+          {
+            "kind": "skill",
+            "code": "construction",
+            "label": "البناء"
+          },
+          {
+            "kind": "skill",
+            "code": "quarry",
+            "label": "الكاريان"
+          },
+          {
+            "kind": "location",
+            "code": "sale_al_jadida",
+            "label": "سلا الجديدة"
+          },
+          {
+            "kind": "location",
+            "code": "inezgane",
+            "label": "إنزكان"
+          },
+          {
+            "kind": "location",
+            "code": "boulemane",
+            "label": "بولمان"
+          },
+          {
+            "kind": "location",
+            "code": "meknes",
+            "label": "مكناس"
+          },
+          {
+            "kind": "location",
+            "code": "fes",
+            "label": "فاس"
+          },
+          {
+            "kind": "location",
+            "code": "doukkala",
+            "label": "دكالة"
+          }
+        ]
+      },
+      "expected_tasks": [
+        "search_workers"
+      ],
+      "expected_actions": null,
+      "rules": {
+        "work": "electrician",
+        "location": "sale_al_jadida"
+      },
+      "latency_seconds": 0.584,
+      "http_status": 400,
+      "rate_headers": {
+        "x-ratelimit-limit-requests": "1000",
+        "x-ratelimit-limit-tokens": "8000",
+        "x-ratelimit-remaining-requests": "999",
+        "x-ratelimit-remaining-tokens": "6652",
+        "x-ratelimit-reset-requests": "1m26.4s",
+        "x-ratelimit-reset-tokens": "10.11s"
+      },
+      "error": {
+        "code": "json_validate_failed",
+        "type": "invalid_request_error",
+        "message": "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details."
+      },
+      "passed": false
+    }
+  ],
+  "summary": {
+    "planned_cases": 1,
+    "attempted_cases": 1,
+    "completed_cases": 0,
+    "schema_valid_cases": 0,
+    "passed_cases": 0,
+    "median_seconds": null,
+    "max_seconds": null,
+    "within_6_seconds": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "wall_seconds_including_quota_pacing": 0.88
+  }
+}

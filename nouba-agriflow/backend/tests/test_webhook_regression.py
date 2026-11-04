@@ -27,6 +27,7 @@ class WebhookRegressionTests(unittest.IsolatedAsyncioTestCase):
             tasks=BackgroundTasks()
             result=await main.receive_webhook(request(body,signature),tasks)
             self.assertEqual(result,{'received':True})
+            handler.assert_not_awaited()  # inference starts after the acknowledgement
             await tasks()
             handler.assert_awaited_once_with(message)
             with self.assertRaises(HTTPException) as caught:
